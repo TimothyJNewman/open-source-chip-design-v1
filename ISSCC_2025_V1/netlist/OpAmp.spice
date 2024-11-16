@@ -1,22 +1,5 @@
-** sch_path: /home/timothyjabez/Documents/Open_Source_Circuit_Design/ISSCC_2025_V1/xschem/Benchmark_Circuits/test_analog/test_analog.sch
-**.subckt test_analog
-V6 vin_p GND 0.9 dc 0.9 ac 1 pulse(0 1 100p 100p 100p 1u 2u)
-V7 vin_n GND 0.9
-V8 VDD GND 1.8
-V9 VSS GND 0
-I0 VSS i_bias 10u
-x1 VDD vout vin_p vin_n VSS i_bias en OpAmp
-V1 en GND 1.8
-C1 vout GND 1p m=1
-**** begin user architecture code
-.lib /usr/local/share/pdk/sky130A/libs.tech/combined/sky130.lib.spice tt
-**** end user architecture code
-**.ends
-
-* expanding   symbol:  Benchmark_Circuits/OpAmp/OpAmp.sym # of pins=7
-** sym_path: /home/timothyjabez/Documents/Open_Source_Circuit_Design/ISSCC_2025_V1/xschem/Benchmark_Circuits/OpAmp/OpAmp.sym
 ** sch_path: /home/timothyjabez/Documents/Open_Source_Circuit_Design/ISSCC_2025_V1/xschem/Benchmark_Circuits/OpAmp/OpAmp.sch
-.subckt OpAmp VDD vout vin_p vin_n VSS i_bias en
+**.subckt OpAmp VDD vout vin_p vin_n VSS i_bias en
 *.ipin vin_p
 *.ipin vin_n
 *.iopin VSS
@@ -46,37 +29,5 @@ XM8 net3 en_n VSS VSS sky130_fd_pr__nfet_01v8 L=0.35 W=4 nf=2 ad='int((nf+1)/2) 
 + ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
 XM11 net2 en VDD VDD sky130_fd_pr__pfet_01v8 L=0.35 W=4 nf=2 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-.ends
-
-.GLOBAL GND
-**** begin user architecture code
-
-
-
-
-* ngspice commands
-.options savecurrents
-
-.control
-save all
-op
-remzerovec
-tran 1u 10u
-plot v(vout)
-write top_level.out
-set appendwrite
-set units=degrees
-dc V6 0 1.8 0.01
-remzerovec
-write top_level.out
-ac dec 10 1 1e12
-let gain = v(vout)/(v(vin_p)-v(vin_n))
-settype decibel gain
-plot vdb(gain) ylabel 'gain mag'
-plot cph(gain) ylabel 'gain phase'
-write top_level.out
-.endc
-
-
-**** end user architecture code
+**.ends
 .end
