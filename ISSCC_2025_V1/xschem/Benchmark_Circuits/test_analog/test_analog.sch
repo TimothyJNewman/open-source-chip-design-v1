@@ -104,7 +104,7 @@ C {lab_pin.sym} 270 -430 0 0 {name=p10 lab=i_bias}
 C {isource.sym} 180 -780 0 0 {name=I0 value=10u}
 C {lab_pin.sym} 180 -840 0 0 {name=p11 sig_type=std_logic lab=VSS}
 C {lab_pin.sym} 180 -730 0 0 {name=p12 lab=i_bias}
-C {devices/simulator_commands.sym} 820 -370 0 0 {name=COMMANDS1
+C {devices/simulator_commands.sym} 830 -370 0 0 {name=COMMANDS1
 simulator=ngspice
 only_toplevel=false
 place=end
@@ -113,18 +113,42 @@ value="* ngspice commands
 
 .control
 save all
+
 op
 remzerovec
-tran 1u 10u
+
+tran 100n 10u
 plot v(vout)
+
+meas tran trise_pulse TRIG v(vout) VAL=0.1*1.8 RISE=1 TARG v(vout) VAL=0.9*1.8 RISE=1
+let slew_rate = 0.8*1.8/trise_pulse
+print slew_rate > opamp_specs.txt
+let power_consumption = -@V8[i]*v(VDD)
+meas tran power_average AVG power_consumption from=0u to=10u
+print power_average >> opamp_specs.txt
 write top_level.out
+
 set appendwrite
 set units=degrees
 dc V6 0 1.8 0.01
 remzerovec
 write top_level.out
+
 ac dec 10 1 1e12
 let gain = v(vout)/(v(vin_p)-v(vin_n))
+
+; Measurement of OpAmp performance parameters
+meas ac AOL_DC_dB FIND vdb(gain) AT=10 >> opamp_specs.txt
+let gain_3dB = AOL_DC_dB-3
+print gain_3dB
+meas ac BW3dB when vdb(gain) = gain_3dB >> opamp_specs.txt
+meas ac UGBW when vdb(gain) = 1 >> opamp_specs.txt
+meas ac Phase_Unity_Gain FIND vp(gain) AT=UGBW >> opamp_specs.txt
+meas ac Zero_PM_Freq when vp(gain)=-175 >> opamp_specs.txt
+meas ac GM FIND vdb(gain) at=Zero_PM_Freq >> opamp_specs.txt
+let PM = 180+Phase_Unity_Gain
+print PM >> opamp_specs.txt
+
 settype decibel gain
 plot vdb(gain) ylabel 'gain mag'
 plot cph(gain) ylabel 'gain phase'
