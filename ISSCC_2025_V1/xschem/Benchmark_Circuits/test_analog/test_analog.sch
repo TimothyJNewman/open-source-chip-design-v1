@@ -155,7 +155,7 @@ plot cph(gain) ylabel 'gain phase'
 write top_level.out
 .endc
 "}
-C {Benchmark_Circuits/OpAmp/OpAmp.sym} 440 -140 0 0 {name=x1}
+C {Benchmark_Circuits/OpAmp_Defect/OpAmp.sym} 440 -140 0 0 {name=x1}
 C {vsource.sym} 180 -620 0 0 {name=V1 value=1.8 savecurrent=false}
 C {gnd.sym} 180 -570 0 0 {name=l6 lab=GND}
 C {lab_pin.sym} 180 -680 0 0 {name=p13 sig_type=std_logic lab=en}
