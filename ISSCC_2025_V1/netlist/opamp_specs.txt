@@ -1,7 +1,0 @@
-slew_rate = 0.000000e+00
-power_average = 8.027876e-07
-aol_dc_db = 3.778551e+01
-bw3db = 3.940356e+05
-ugbw = 2.722042e+07
-gain_margin = -5.46292e+01
-phase_margin = -9.99000e+02

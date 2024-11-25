@@ -1,4 +1,4 @@
-** sch_path: /home/timothyjabez/Documents/Open_Source_Circuit_Design/open-source-chip-design-v1/ISSCC_2025_V1/xschem/Benchmark_Circuits/test_analog/test_analog.sch
+** sch_path: /home/timothyjabez/Documents/Open_Source_Circuit_Design/ISSCC_2025_V1/xschem/Benchmark_Circuits/test_analog/test_analog.sch
 **.subckt test_analog
 V6 vin_p GND 0.9 dc 0.9 ac 1 pulse(0 1 100p 100p 100p 1u 2u)
 V7 vin_n GND 0.9
@@ -9,13 +9,13 @@ x1 VDD vout vin_p vin_n VSS i_bias en OpAmp
 V1 en GND 1.8
 C1 vout GND 1p m=1
 **** begin user architecture code
-.lib /usr/local/share/pdk/sky130B/libs.tech/combined/sky130.lib.spice tt
+.lib /usr/local/share/pdk/sky130A/libs.tech/combined/sky130.lib.spice tt
 **** end user architecture code
 **.ends
 
-* expanding   symbol:  Benchmark_Circuits/OpAmp/OpAmp.sym # of pins=7
-** sym_path: /home/timothyjabez/Documents/Open_Source_Circuit_Design/open-source-chip-design-v1/ISSCC_2025_V1/xschem/Benchmark_Circuits/OpAmp/OpAmp.sym
-** sch_path: /home/timothyjabez/Documents/Open_Source_Circuit_Design/open-source-chip-design-v1/ISSCC_2025_V1/xschem/Benchmark_Circuits/OpAmp/OpAmp.sch
+* expanding   symbol:  Benchmark_Circuits/OpAmp_Defect/OpAmp.sym # of pins=7
+** sym_path: /home/timothyjabez/Documents/Open_Source_Circuit_Design/ISSCC_2025_V1/xschem/Benchmark_Circuits/OpAmp_Defect/OpAmp.sym
+** sch_path: /home/timothyjabez/Documents/Open_Source_Circuit_Design/ISSCC_2025_V1/xschem/Benchmark_Circuits/OpAmp_Defect/OpAmp.sch
 .subckt OpAmp VDD vout vin_p vin_n VSS i_bias en
 *.ipin vin_p
 *.ipin vin_n
@@ -24,28 +24,28 @@ C1 vout GND 1p m=1
 *.opin vout
 *.ipin i_bias
 *.ipin en
-XM1 vout net2 VDD VDD sky130_fd_pr__pfet_01v8 L=1 W=8 nf=2 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM2 net2 net2 VDD VDD sky130_fd_pr__pfet_01v8 L=1 W=8 nf=2 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM3 net2 vin_p net1 VSS sky130_fd_pr__nfet_01v8 L=0.5 W=16 nf=4 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM4 vout vin_n net1 VSS sky130_fd_pr__nfet_01v8 L=0.5 W=16 nf=4 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM5 net1 net3 VSS VSS sky130_fd_pr__nfet_01v8 L=1 W=8 nf=2 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=2 m=2
-XM6 i_bias net3 VSS VSS sky130_fd_pr__nfet_01v8 L=1 W=8 nf=2 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM1 vout Active_load_g VDD VDD sky130_fd_pr__pfet_01v8 L=1 W=8 nf=2 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM2 Active_load_g Active_load_g VDD VDD sky130_fd_pr__pfet_01v8 L=1 W=8 nf=2 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM3 Active_load_g vin_p I_mirror_d VSS sky130_fd_pr__nfet_01v8 L=0.5 W=16 nf=4 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM4 vout vin_n I_mirror_d VSS sky130_fd_pr__nfet_01v8 L=0.5 W=16 nf=4 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM5 I_mirror_d I_mirror_g VSS VSS sky130_fd_pr__nfet_01v8 L=1 W=8 nf=2 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=2 m=2
+XM6 i_bias I_mirror_g VSS VSS sky130_fd_pr__nfet_01v8 L=1 W=8 nf=2 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
 XM9 en_n en VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=2 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
 XM10 en_n en VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM7 i_bias en net3 VSS sky130_fd_pr__nfet_01v8 L=0.35 W=4 nf=2 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM8 net3 en_n VSS VSS sky130_fd_pr__nfet_01v8 L=0.35 W=4 nf=2 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM11 net2 en VDD VDD sky130_fd_pr__pfet_01v8 L=0.35 W=4 nf=2 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM7 i_bias en I_mirror_g VSS sky130_fd_pr__nfet_01v8 L=0.35 W=4 nf=2 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM8 I_mirror_g en_n VSS VSS sky130_fd_pr__nfet_01v8 L=0.35 W=4 nf=2 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM11 Active_load_g en VDD VDD sky130_fd_pr__pfet_01v8 L=0.35 W=4 nf=2 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
 .ends
 
 .GLOBAL GND
@@ -66,10 +66,8 @@ remzerovec
 tran 100n 10u
 plot v(vout)
 
-
 meas tran trise_pulse TRIG v(vout) VAL=0.1*1.8 RISE=1 TARG v(vout) VAL=0.9*1.8 RISE=1
-let slew_rate = 0
-slew_rate = 0.8*1.8/trise_pulse
+let slew_rate = 0.8*1.8/trise_pulse
 print slew_rate > opamp_specs.txt
 let power_consumption = -@V8[i]*v(VDD)
 meas tran power_average AVG power_consumption from=0u to=10u
@@ -86,25 +84,16 @@ ac dec 10 1 1e12
 let gain = v(vout)/(v(vin_p)-v(vin_n))
 
 ; Measurement of OpAmp performance parameters
-let AOL_DC_dB = 0
-meas ac AOL_DC_dB FIND vdb(gain) AT=10
-print AOL_DC_dB >> opamp_specs.txt
+meas ac AOL_DC_dB FIND vdb(gain) AT=10 >> opamp_specs.txt
 let gain_3dB = AOL_DC_dB-3
 print gain_3dB
-let BW3dB = 0
-meas ac BW3dB when vdb(gain) = gain_3dB
-print BW3dB >> opamp_specs.txt
-let UGBW = 0
-meas ac UGBW when vdb(gain) = 1
-print UGBW >> opamp_specs.txt
-meas ac Phase_Unity_Gain FIND vp(gain) AT=UGBW
-meas ac Zero_PM_Freq when vp(gain)=-175
-let Gain_Margin = 999
-meas ac Gain_Margin FIND vdb(gain) at=Zero_PM_Freq
-print Gain_margin >> opamp_specs.txt
-let Phase_Margin = -999
-Phase_Margin = 180+Phase_Unity_Gain
-print Phase_Margin >> opamp_specs.txt
+meas ac BW3dB when vdb(gain) = gain_3dB >> opamp_specs.txt
+meas ac UGBW when vdb(gain) = 1 >> opamp_specs.txt
+meas ac Phase_Unity_Gain FIND vp(gain) AT=UGBW >> opamp_specs.txt
+meas ac Zero_PM_Freq when vp(gain)=-175 >> opamp_specs.txt
+meas ac GM FIND vdb(gain) at=Zero_PM_Freq >> opamp_specs.txt
+let PM = 180+Phase_Unity_Gain
+print PM >> opamp_specs.txt
 
 settype decibel gain
 plot vdb(gain) ylabel 'gain mag'
