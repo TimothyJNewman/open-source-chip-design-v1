@@ -46,7 +46,6 @@ C {devices/launcher.sym} 800 -100 0 0 {name=h2
 descr="View Raw file" 
 tclcommand="textwindow $netlist_dir/test_analog.raw"
 }
-C {sky130_fd_pr/corner.sym} 1050 -370 0 0 {name=CORNER only_toplevel=true corner=tt}
 C {devices/launcher.sym} 800 -200 0 0 {name=h1
 descr="Annotate OP" 
 tclcommand="set show_hidden_texts 1; xschem annotate_op"
@@ -120,8 +119,10 @@ remzerovec
 tran 100n 10u
 plot v(vout)
 
+
 meas tran trise_pulse TRIG v(vout) VAL=0.1*1.8 RISE=1 TARG v(vout) VAL=0.9*1.8 RISE=1
-let slew_rate = 0.8*1.8/trise_pulse
+let slew_rate = 0
+slew_rate = 0.8*1.8/trise_pulse
 print slew_rate > opamp_specs.txt
 let power_consumption = -@V8[i]*v(VDD)
 meas tran power_average AVG power_consumption from=0u to=10u
@@ -138,16 +139,25 @@ ac dec 10 1 1e12
 let gain = v(vout)/(v(vin_p)-v(vin_n))
 
 ; Measurement of OpAmp performance parameters
-meas ac AOL_DC_dB FIND vdb(gain) AT=10 >> opamp_specs.txt
+let AOL_DC_dB = 0
+meas ac AOL_DC_dB FIND vdb(gain) AT=10 
+print AOL_DC_dB >> opamp_specs.txt
 let gain_3dB = AOL_DC_dB-3
 print gain_3dB
-meas ac BW3dB when vdb(gain) = gain_3dB >> opamp_specs.txt
-meas ac UGBW when vdb(gain) = 1 >> opamp_specs.txt
-meas ac Phase_Unity_Gain FIND vp(gain) AT=UGBW >> opamp_specs.txt
-meas ac Zero_PM_Freq when vp(gain)=-175 >> opamp_specs.txt
-meas ac GM FIND vdb(gain) at=Zero_PM_Freq >> opamp_specs.txt
-let PM = 180+Phase_Unity_Gain
-print PM >> opamp_specs.txt
+let BW3dB = 0
+meas ac BW3dB when vdb(gain) = gain_3dB 
+print BW3dB >> opamp_specs.txt
+let UGBW = 0
+meas ac UGBW when vdb(gain) = 1 
+print UGBW >> opamp_specs.txt
+meas ac Phase_Unity_Gain FIND vp(gain) AT=UGBW 
+meas ac Zero_PM_Freq when vp(gain)=-175 
+let Gain_Margin = 999
+meas ac Gain_Margin FIND vdb(gain) at=Zero_PM_Freq 
+print Gain_margin >> opamp_specs.txt
+let Phase_Margin = -999
+Phase_Margin = 180+Phase_Unity_Gain
+print Phase_Margin >> opamp_specs.txt
 
 settype decibel gain
 plot vdb(gain) ylabel 'gain mag'
@@ -155,7 +165,7 @@ plot cph(gain) ylabel 'gain phase'
 write top_level.out
 .endc
 "}
-C {Benchmark_Circuits/OpAmp_Defect/OpAmp.sym} 440 -140 0 0 {name=x1}
+C {Benchmark_Circuits/OpAmp/OpAmp.sym} 440 -140 0 0 {name=x1}
 C {vsource.sym} 180 -620 0 0 {name=V1 value=1.8 savecurrent=false}
 C {gnd.sym} 180 -570 0 0 {name=l6 lab=GND}
 C {lab_pin.sym} 180 -680 0 0 {name=p13 sig_type=std_logic lab=en}
@@ -166,3 +176,4 @@ value=1p
 footprint=1206
 device=polarized_capacitor}
 C {gnd.sym} 560 -250 0 0 {name=l7 lab=GND}
+C {/usr/local/share/pdk/sky130A/libs.tech/xschem/sky130_fd_pr/corner.sym} 1020 -420 0 0 {name=CORNER1 only_toplevel=true corner=tt}
