@@ -1,1 +1,1 @@
-for file in ./*.spice ; do ngspice -b "$file"; done
+for file in ./generated_netlists/*.spice ; do ngspice -b "$file"; done

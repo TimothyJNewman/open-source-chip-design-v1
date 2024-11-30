@@ -123,10 +123,10 @@ plot v(vout)
 meas tran trise_pulse TRIG v(vout) VAL=0.1*1.8 RISE=1 TARG v(vout) VAL=0.9*1.8 RISE=1
 let slew_rate = 0
 slew_rate = 0.8*1.8/trise_pulse
-print slew_rate > opamp_specs.txt
+print slew_rate > ./specs/opamp_specs.txt
 let power_consumption = -@V8[i]*v(VDD)
 meas tran power_average AVG power_consumption from=0u to=10u
-print power_average >> opamp_specs.txt
+print power_average >> ./specs/opamp_specs.txt
 write top_level.out
 
 set appendwrite
@@ -141,23 +141,23 @@ let gain = v(vout)/(v(vin_p)-v(vin_n))
 ; Measurement of OpAmp performance parameters
 let AOL_DC_dB = 0
 meas ac AOL_DC_dB FIND vdb(gain) AT=10 
-print AOL_DC_dB >> opamp_specs.txt
+print AOL_DC_dB >> ./specs/opamp_specs.txt
 let gain_3dB = AOL_DC_dB-3
 print gain_3dB
 let BW3dB = 0
 meas ac BW3dB when vdb(gain) = gain_3dB 
-print BW3dB >> opamp_specs.txt
+print BW3dB >> ./specs/opamp_specs.txt
 let UGBW = 0
 meas ac UGBW when vdb(gain) = 1 
-print UGBW >> opamp_specs.txt
+print UGBW >> ./specs/opamp_specs.txt
 meas ac Phase_Unity_Gain FIND vp(gain) AT=UGBW 
 meas ac Zero_PM_Freq when vp(gain)=-175 
 let Gain_Margin = 999
 meas ac Gain_Margin FIND vdb(gain) at=Zero_PM_Freq 
-print Gain_margin >> opamp_specs.txt
+print Gain_margin >> ./specs/opamp_specs.txt
 let Phase_Margin = -999
 Phase_Margin = 180+Phase_Unity_Gain
-print Phase_Margin >> opamp_specs.txt
+print Phase_Margin >> ./specs/opamp_specs.txt
 
 settype decibel gain
 plot vdb(gain) ylabel 'gain mag'
