@@ -5,11 +5,11 @@ V7 vin_n GND 0.9
 V8 VDD GND 1.8
 V9 VSS GND 0
 I0 VSS i_bias 10u
-x1 VDD vout vin_p vin_n VSS i_bias en OpAmp
 V1 en GND 1.8
 C1 vout GND 1p m=1
+x1 VDD vout vin_p vin_n VSS i_bias en OpAmp
 **** begin user architecture code
-.lib /usr/local/share/pdk/sky130A/libs.tech/combined/sky130.lib.spice tt
+.lib /usr/local/share/pdk/sky130B/libs.tech/combined/sky130.lib.spice tt
 **** end user architecture code
 **.ends
 
@@ -66,10 +66,9 @@ remzerovec
 tran 100n 10u
 plot v(vout)
 
-
+let trise_pulse = 999
 meas tran trise_pulse TRIG v(vout) VAL=0.1*1.8 RISE=1 TARG v(vout) VAL=0.9*1.8 RISE=1
-let slew_rate = 0
-slew_rate = 0.8*1.8/trise_pulse
+let slew_rate = 0.8*1.8/trise_pulse
 print slew_rate > ./specs/opamp_specs.txt
 let power_consumption = -@V8[i]*v(VDD)
 meas tran power_average AVG power_consumption from=0u to=10u
@@ -97,13 +96,13 @@ print BW3dB >> ./specs/opamp_specs.txt
 let UGBW = 0
 meas ac UGBW when vdb(gain) = 1
 print UGBW >> ./specs/opamp_specs.txt
+let Phase_Unity_Gain = -999
 meas ac Phase_Unity_Gain FIND vp(gain) AT=UGBW
 meas ac Zero_PM_Freq when vp(gain)=-175
 let Gain_Margin = 999
 meas ac Gain_Margin FIND vdb(gain) at=Zero_PM_Freq
 print Gain_margin >> ./specs/opamp_specs.txt
-let Phase_Margin = -999
-Phase_Margin = 180+Phase_Unity_Gain
+let Phase_Margin = 180+Phase_Unity_Gain
 print Phase_Margin >> ./specs/opamp_specs.txt
 
 settype decibel gain

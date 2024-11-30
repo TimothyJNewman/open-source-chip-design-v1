@@ -119,10 +119,9 @@ remzerovec
 tran 100n 10u
 plot v(vout)
 
-
+let trise_pulse = 999
 meas tran trise_pulse TRIG v(vout) VAL=0.1*1.8 RISE=1 TARG v(vout) VAL=0.9*1.8 RISE=1
-let slew_rate = 0
-slew_rate = 0.8*1.8/trise_pulse
+let slew_rate = 0.8*1.8/trise_pulse
 print slew_rate > ./specs/opamp_specs.txt
 let power_consumption = -@V8[i]*v(VDD)
 meas tran power_average AVG power_consumption from=0u to=10u
@@ -150,13 +149,13 @@ print BW3dB >> ./specs/opamp_specs.txt
 let UGBW = 0
 meas ac UGBW when vdb(gain) = 1 
 print UGBW >> ./specs/opamp_specs.txt
+let Phase_Unity_Gain = -999
 meas ac Phase_Unity_Gain FIND vp(gain) AT=UGBW 
 meas ac Zero_PM_Freq when vp(gain)=-175 
 let Gain_Margin = 999
 meas ac Gain_Margin FIND vdb(gain) at=Zero_PM_Freq 
 print Gain_margin >> ./specs/opamp_specs.txt
-let Phase_Margin = -999
-Phase_Margin = 180+Phase_Unity_Gain
+let Phase_Margin = 180+Phase_Unity_Gain
 print Phase_Margin >> ./specs/opamp_specs.txt
 
 settype decibel gain
@@ -165,7 +164,6 @@ plot cph(gain) ylabel 'gain phase'
 write top_level.out
 .endc
 "}
-C {Benchmark_Circuits/OpAmp/OpAmp.sym} 440 -140 0 0 {name=x1}
 C {vsource.sym} 180 -620 0 0 {name=V1 value=1.8 savecurrent=false}
 C {gnd.sym} 180 -570 0 0 {name=l6 lab=GND}
 C {lab_pin.sym} 180 -680 0 0 {name=p13 sig_type=std_logic lab=en}
@@ -176,4 +174,5 @@ value=1p
 footprint=1206
 device=polarized_capacitor}
 C {gnd.sym} 560 -250 0 0 {name=l7 lab=GND}
-C {/usr/local/share/pdk/sky130A/libs.tech/xschem/sky130_fd_pr/corner.sym} 1020 -420 0 0 {name=CORNER1 only_toplevel=true corner=tt}
+C {sky130_fd_pr/corner.sym} 1020 -420 0 0 {name=CORNER1 only_toplevel=true corner=tt}
+C {Benchmark_Circuits/OpAmp/OpAmp.sym} 440 -140 0 0 {name=x1}
