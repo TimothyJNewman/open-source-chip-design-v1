@@ -5,6 +5,8 @@ K {}
 V {}
 S {}
 E {}
+T {Placeholder for short/open defects
+} -590 -470 0 0 0.4 0.4 {}
 N 40 -150 40 -100 {lab=#net1}
 N 40 -100 180 -100 {lab=#net1}
 N 180 -60 180 -40 {lab=#net1}
@@ -68,6 +70,8 @@ N 240 -520 240 -480 {lab=VDD}
 N 240 -450 270 -450 {lab=VDD}
 N 160 -450 200 -450 {lab=en}
 N 270 -450 280 -450 {lab=VDD}
+N -420 -420 -420 -400 {lab=j1}
+N -420 -340 -420 -320 {lab=xxx}
 C {lab_wire.sym} 70 -180 0 0 {name=p6 sig_type=std_logic lab=VSS}
 C {lab_wire.sym} 310 -180 0 0 {name=p7 sig_type=std_logic lab=VSS
 }
@@ -251,3 +255,8 @@ spiceprefix=X
 }
 C {lab_wire.sym} 170 -450 2 0 {name=p24 sig_type=std_logic lab=en}
 C {lab_wire.sym} 270 -450 2 0 {name=p25 sig_type=std_logic lab=VDD}
+C {jumper.sym} -420 -370 0 0 {name=J1
+footprint=JUMPER2
+device=JUMPER}
+C {lab_pin.sym} -420 -410 0 0 {name=p26 sig_type=std_logic lab=j1}
+C {lab_pin.sym} -420 -330 0 0 {name=p27 sig_type=std_logic lab=j2}

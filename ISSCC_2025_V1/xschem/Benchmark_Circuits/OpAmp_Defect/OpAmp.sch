@@ -66,10 +66,10 @@ N 280 -710 280 -670 {lab=VDD}
 N 280 -640 310 -640 {lab=VDD}
 N 200 -640 240 -640 {lab=en}
 N 310 -640 320 -640 {lab=VDD}
-N -330 -530 -330 -510 {lab=R_open_n}
-N -330 -610 -330 -590 {lab=R_open_p}
-N -330 -620 -330 -610 {lab=R_open_p}
-N -330 -510 -330 -500 {lab=R_open_n}
+N -330 -530 -330 -510 {lab=I_mirror_g}
+N -330 -610 -330 -590 {lab=en}
+N -330 -620 -330 -610 {lab=en}
+N -330 -510 -330 -500 {lab=I_mirror_g}
 C {lab_wire.sym} 110 -370 0 0 {name=p6 sig_type=std_logic lab=VSS}
 C {lab_wire.sym} 350 -370 0 0 {name=p7 sig_type=std_logic lab=VSS
 }
@@ -254,7 +254,7 @@ spiceprefix=X
 C {lab_wire.sym} 210 -640 2 0 {name=p24 sig_type=std_logic lab=en}
 C {lab_wire.sym} 310 -640 2 0 {name=p25 sig_type=std_logic lab=VDD}
 C {res.sym} -330 -560 0 0 {name=R_open
-value=1G
+value=1
 footprint=1206
 device=resistor
 m=1}
@@ -264,5 +264,5 @@ C {lab_wire.sym} 290 -290 0 0 {name=p27 sig_type=std_logic lab=I_mirror_d
 C {lab_wire.sym} 220 -580 0 0 {name=p28 sig_type=std_logic lab=Active_load_g}
 C {lab_wire.sym} 200 -710 0 0 {name=p29 sig_type=std_logic lab=VDD}
 C {lab_wire.sym} -70 -100 0 0 {name=p30 sig_type=std_logic lab=VSS}
-C {lab_wire.sym} -330 -610 0 0 {name=p31 sig_type=std_logic lab=R_open_p}
-C {lab_wire.sym} -330 -510 0 0 {name=p32 sig_type=std_logic lab=R_open_n}
+C {lab_wire.sym} -330 -610 0 0 {name=p31 sig_type=std_logic lab=en}
+C {lab_wire.sym} -330 -510 0 0 {name=p32 sig_type=std_logic lab=I_mirror_g}
