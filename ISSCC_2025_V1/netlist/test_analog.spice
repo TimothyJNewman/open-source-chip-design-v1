@@ -5,9 +5,10 @@ V7 vin_n GND 0.9
 V8 VDD GND 1.8
 V9 VSS GND 0
 I0 VSS i_bias 10u
-V1 en GND 1.8
+V1 net1 GND 1.8
 C1 vout GND 1p m=1
 x1 VDD vout vin_p vin_n VSS i_bias en OpAmp
+R_en_source_res en net1 1k m=1
 **** begin user architecture code
 .lib /usr/local/share/pdk/sky130B/libs.tech/combined/sky130.lib.spice tt
 **** end user architecture code

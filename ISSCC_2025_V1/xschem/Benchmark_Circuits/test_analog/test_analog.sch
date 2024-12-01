@@ -22,25 +22,28 @@ E {}
 T {This will display the raw file of the top
 most schematic where presumably simulation
 has been run} 740 -170 0 0 0.2 0.2 {layer=4}
-N 380 -750 380 -730 {lab=GND}
-N 280 -750 280 -730 {lab=GND}
+N 380 -850 380 -830 {lab=GND}
+N 280 -850 280 -830 {lab=GND}
 N 380 -590 380 -570 {lab=GND}
-N 380 -680 380 -650 {lab=VDD}
-N 380 -850 380 -810 {lab=vin_p}
-N 280 -850 280 -810 {lab=vin_n}
-N 380 -690 380 -680 {lab=VDD}
+N 380 -770 380 -740 {lab=VDD}
+N 380 -950 380 -910 {lab=vin_p}
+N 280 -950 280 -910 {lab=vin_n}
+N 380 -780 380 -770 {lab=VDD}
 N 280 -590 280 -570 {lab=GND}
-N 280 -680 280 -650 {lab=VSS}
-N 280 -690 280 -680 {lab=VSS}
-N 180 -750 180 -720 {lab=i_bias}
-N 180 -850 180 -810 {lab=VSS}
+N 280 -770 280 -740 {lab=VSS}
+N 280 -780 280 -770 {lab=VSS}
+N 180 -850 180 -820 {lab=i_bias}
+N 180 -950 180 -910 {lab=VSS}
 N 360 -460 360 -430 {lab=VDD}
 N 380 -440 380 -430 {lab=VSS}
 N 470 -330 530 -330 {lab=vout}
 N 180 -590 180 -570 {lab=GND}
-N 180 -690 180 -650 {lab=en}
+N 180 -780 180 -740 {lab=en}
 N 560 -270 560 -250 {lab=GND}
 N 530 -330 560 -330 {lab=vout}
+N 180 -680 180 -650 {lab=#net1}
+N 280 -740 280 -650 {lab=VSS}
+N 380 -740 380 -650 {lab=VDD}
 C {devices/title.sym} 160 -30 0 0 {name=l1 author="Timothy Newman"}
 C {devices/launcher.sym} 800 -100 0 0 {name=h2
 descr="View Raw file" 
@@ -81,28 +84,28 @@ write test_analog.raw
 quit 0
 .endc
 "}
-C {vsource.sym} 380 -780 0 0 {name=V6 value="0.9 dc 0.9 ac 1 pulse(0 1 100p 100p 100p 1u 2u)" savecurrent=false}
-C {gnd.sym} 380 -730 0 0 {name=l2 lab=GND}
-C {vsource.sym} 280 -780 0 0 {name=V7 value=0.9 savecurrent=false}
-C {gnd.sym} 280 -730 0 0 {name=l3 lab=GND}
+C {vsource.sym} 380 -880 0 0 {name=V6 value="0.9 dc 0.9 ac 1 pulse(0 1 100p 100p 100p 1u 2u)" savecurrent=false}
+C {gnd.sym} 380 -830 0 0 {name=l2 lab=GND}
+C {vsource.sym} 280 -880 0 0 {name=V7 value=0.9 savecurrent=false}
+C {gnd.sym} 280 -830 0 0 {name=l3 lab=GND}
 C {vsource.sym} 380 -620 0 0 {name=V8 value=1.8 savecurrent=false}
 C {gnd.sym} 380 -570 0 0 {name=l4 lab=GND}
 C {vsource.sym} 280 -620 0 0 {name=V9 value=0 savecurrent=false}
 C {gnd.sym} 280 -570 0 0 {name=l5 lab=GND}
-C {lab_pin.sym} 380 -680 0 0 {name=p3 sig_type=std_logic lab=VDD}
-C {lab_pin.sym} 280 -680 0 0 {name=p4 sig_type=std_logic lab=VSS}
-C {lab_pin.sym} 280 -840 0 0 {name=p5 sig_type=std_logic lab=vin_n
+C {lab_pin.sym} 380 -770 0 0 {name=p3 sig_type=std_logic lab=VDD}
+C {lab_pin.sym} 280 -770 0 0 {name=p4 sig_type=std_logic lab=VSS}
+C {lab_pin.sym} 280 -940 0 0 {name=p5 sig_type=std_logic lab=vin_n
 }
-C {lab_pin.sym} 380 -840 0 0 {name=p6 sig_type=std_logic lab=vin_p}
+C {lab_pin.sym} 380 -940 0 0 {name=p6 sig_type=std_logic lab=vin_p}
 C {lab_pin.sym} 360 -460 0 0 {name=p1 lab=VDD}
 C {lab_pin.sym} 470 -330 0 1 {name=p2 lab=vout}
 C {lab_pin.sym} 270 -370 0 0 {name=p7 lab=vin_p}
 C {lab_pin.sym} 270 -290 0 0 {name=p8 lab=vin_n}
 C {lab_pin.sym} 380 -440 0 0 {name=p9 lab=VSS}
 C {lab_pin.sym} 270 -430 0 0 {name=p10 lab=i_bias}
-C {isource.sym} 180 -780 0 0 {name=I0 value=10u}
-C {lab_pin.sym} 180 -840 0 0 {name=p11 sig_type=std_logic lab=VSS}
-C {lab_pin.sym} 180 -730 0 0 {name=p12 lab=i_bias}
+C {isource.sym} 180 -880 0 0 {name=I0 value=10u}
+C {lab_pin.sym} 180 -940 0 0 {name=p11 sig_type=std_logic lab=VSS}
+C {lab_pin.sym} 180 -830 0 0 {name=p12 lab=i_bias}
 C {devices/simulator_commands.sym} 830 -370 0 0 {name=COMMANDS1
 simulator=ngspice
 only_toplevel=false
@@ -166,7 +169,7 @@ write top_level.out
 "}
 C {vsource.sym} 180 -620 0 0 {name=V1 value=1.8 savecurrent=false}
 C {gnd.sym} 180 -570 0 0 {name=l6 lab=GND}
-C {lab_pin.sym} 180 -680 0 0 {name=p13 sig_type=std_logic lab=en}
+C {lab_pin.sym} 180 -770 0 0 {name=p13 sig_type=std_logic lab=en}
 C {lab_pin.sym} 270 -450 0 0 {name=p14 lab=en}
 C {capa-2.sym} 560 -300 0 0 {name=C1
 m=1
@@ -176,3 +179,8 @@ device=polarized_capacitor}
 C {gnd.sym} 560 -250 0 0 {name=l7 lab=GND}
 C {sky130_fd_pr/corner.sym} 1020 -420 0 0 {name=CORNER1 only_toplevel=true corner=tt}
 C {Benchmark_Circuits/OpAmp/OpAmp.sym} 440 -140 0 0 {name=x1}
+C {res.sym} 180 -710 0 0 {name=R_en_source_res
+value=1k
+footprint=1206
+device=resistor
+m=1}
