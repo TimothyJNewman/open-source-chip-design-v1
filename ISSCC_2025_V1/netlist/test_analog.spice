@@ -75,13 +75,13 @@ print slew_rate > ./specs/opamp_specs.txt
 let power_consumption = -@V8[i]*v(VDD)
 meas tran power_average AVG power_consumption from=0u to=10u
 print power_average >> ./specs/opamp_specs.txt
-write top_level.out
+;write top_level.out
 
 set appendwrite
 set units=degrees
 dc V6 0 1.8 0.01
 remzerovec
-write top_level.out
+;write top_level.out
 
 ac dec 10 1 1e12
 let gain = v(vout)/(v(vin_p)-v(vin_n))
@@ -110,7 +110,7 @@ print Phase_Margin >> ./specs/opamp_specs.txt
 settype decibel gain
 plot vdb(gain) ylabel 'gain mag'
 plot cph(gain) ylabel 'gain phase'
-write top_level.out
+;write top_level.out
 .endc
 
 
