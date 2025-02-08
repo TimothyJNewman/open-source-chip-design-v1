@@ -53,37 +53,6 @@ C {devices/launcher.sym} 800 -200 0 0 {name=h1
 descr="Annotate OP" 
 tclcommand="set show_hidden_texts 1; xschem annotate_op"
 }
-C {devices/simulator_commands.sym} 1050 -190 0 0 {name=COMMANDS
-simulator=none
-only_toplevel=false
-place=end
-value="* ngspice commands
-.options savecurrents
-
-.control
-save all
-save @m.x1.xm1.msky130_fd_pr__nfet_01v8_lvt[gm]
-save @m.x1.xm2.msky130_fd_pr__nfet_01v8_lvt[gm]
-save @m.x1.xm3.msky130_fd_pr__pfet_01v8_lvt[gm]
-save @m.x1.xm4.msky130_fd_pr__pfet_01v8_lvt[gm]
-save @m.x1.xm5.msky130_fd_pr__nfet_01v8[gm]
-save @m.x1.xm5.msky130_fd_pr__nfet_01v8[gds]
-save @m.x1.xm5.msky130_fd_pr__nfet_01v8[gmbs]
-save @m.x1.xm5.msky130_fd_pr__nfet_01v8[vth]
-save @m.x2.xm1.msky130_fd_pr__nfet_01v8_lvt[gm]
-save @m.x2.xm2.msky130_fd_pr__nfet_01v8_lvt[gm]
-save @m.x2.xm3.msky130_fd_pr__pfet_01v8_lvt[gm]
-save @m.x2.xm4.msky130_fd_pr__pfet_01v8_lvt[gm]
-save @m.x2.xm5.msky130_fd_pr__nfet_01v8[gm]
-save @m.x2.xm5.msky130_fd_pr__nfet_01v8[gds]
-save @m.x2.xm5.msky130_fd_pr__nfet_01v8[gmbs]
-save @m.x2.xm5.msky130_fd_pr__nfet_01v8[vth]
-op
-print @m.x2.xm5.msky130_fd_pr__nfet_01v8[vth]
-write test_analog.raw
-quit 0
-.endc
-"}
 C {vsource.sym} 380 -880 0 0 {name=V6 value="0.9 dc 0.9 ac 1 pulse(0 1 100p 100p 100p 1u 2u)" savecurrent=false}
 C {gnd.sym} 380 -830 0 0 {name=l2 lab=GND}
 C {vsource.sym} 280 -880 0 0 {name=V7 value=0.9 savecurrent=false}
@@ -177,10 +146,18 @@ value=1p
 footprint=1206
 device=polarized_capacitor}
 C {gnd.sym} 560 -250 0 0 {name=l7 lab=GND}
-C {sky130_fd_pr/corner.sym} 1020 -420 0 0 {name=CORNER1 only_toplevel=true corner=tt}
-C {Benchmark_Circuits/OpAmp/OpAmp.sym} 440 -140 0 0 {name=x1}
 C {res.sym} 180 -710 0 0 {name=R_en_source_res
 value=1k
 footprint=1206
 device=resistor
 m=1}
+C {devices/code.sym} 990 -380 0 0 {name=TT_MODELS
+only_toplevel=true
+format="tcleval( @value )"
+value="
+** opencircuitdesign pdks install
+.lib /home/timothyjabez/Documents/Open_Source_Circuit_Design/Edited_Pdk/sky130A/libs.tech/combined/sky130.lib.spice tt
+
+"
+spice_ignore=false}
+C {Benchmark_Circuits/OpAmp/OpAmp.sym} 440 -140 0 0 {name=x1}
